@@ -1,0 +1,25 @@
+From: Ignacio Losiggio <iglosiggio@gmail.com>
+Subject: Remove unused subprojects
+
+* src/CMakeLists.txt: Removed kiosk mode and QT frontend
+* CMakeLists.txt: Removed QT5 dependency
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -13,12 +13,6 @@
+ 	set(CMAKE_PREFIX_PATH "d:/Qt/5.4/msvc2013_opengl")
+ endif(WIN32)
+ 
+-find_package( Qt5Core REQUIRED )
+-find_package( Qt5Gui REQUIRED )
+-find_package( Qt5Widgets REQUIRED )
+-find_package( Qt5OpenGL REQUIRED )
+-find_package( Qt5Svg REQUIRED )
+-
+ set(CMAKE_INCLUDE_CURRENT_DIR ON)
+ set(CMAKE_AUTOMOC ON)
+ set(CMAKE_AUTOUIC ON)
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -1 +1 @@
+-SUBDIRS(ivf2d common forcepad forcepad_kiosk qtforcepad calfemcxx newmat)
++SUBDIRS(ivf2d common forcepad calfemcxx newmat)

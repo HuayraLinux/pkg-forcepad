@@ -1,0 +1,23 @@
+Source: forcepad
+Section: main
+Priority: optional
+Maintainer: Ignacio Losiggio <iglosiggio@gmail.com>
+Build-Depends: debhelper (>= 9), cmake, freeglut3-dev, libfltk1.3-dev,
+               zlib1g-dev, libpng12-dev, libjpeg-dev, libxft2-dev,
+               libfontconfig1-dev, libxinerama-dev
+Standards-Version: 3.9.5
+Homepage: http://forcepad.sourceforge.net/
+#Vcs-Git: git://anonscm.debian.org/collab-maint/forcepad.git
+#Vcs-Browser: http://anonscm.debian.org/?p=collab-maint/forcepad.git;a=summary
+
+Package: forcepad
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: Herramienta para visualizar estructuras sometidas a cargas físicas
+ ForcePAD es una herramienta intuitiva para visualizar el comportamiento de
+ estructuras sometidas a cargas y condiciones de contorno.
+ .
+ Características:
+  * Modelado simple de estructuras
+  * Facilidad para recrear cientos de situaciones físicas
+  * Visualización intuitiva de las fuerzas internas y desplazamintos

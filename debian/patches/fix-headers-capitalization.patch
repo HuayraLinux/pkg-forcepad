@@ -1,0 +1,41 @@
+From: Ignacio Losiggio <iglosiggio@gmail.com>
+Subject: Fix header capitalization
+
+* src/common/Fl_Cursor_Shape.H
+* src/forcepad/FemGridSolver2.cpp
+* src/forcepad/FlPaintView.cpp
+--- a/src/common/Fl_Cursor_Shape.H
++++ b/src/common/Fl_Cursor_Shape.H
+@@ -31,7 +31,7 @@
+ #define FL_INTERNALS
+ 
+ #include <FL/Enumerations.H>
+-#include <FL/Fl.h>
++#include <FL/Fl.H>
+ 
+ #ifdef WIN32
+ # include <windows.h>
+--- a/src/forcepad/FemGridSolver2.cpp
++++ b/src/forcepad/FemGridSolver2.cpp
+@@ -37,7 +37,7 @@
+ #include <climits>
+ #include <ctime>
+ 
+-#include <FL/Fl.h>
++#include <FL/Fl.H>
+ 
+ CFemGridSolver2::CFemGridSolver2()
+ {
+--- a/src/forcepad/FlPaintView.cpp
++++ b/src/forcepad/FlPaintView.cpp
+@@ -2,8 +2,8 @@
+ 
+ #include <string>
+ 
+-#include <FL/fl_ask.h>
+-#include <FL/fl_file_chooser.h>
++#include <FL/fl_ask.H>
++#include <FL/fl_file_chooser.H>
+ #include <FL/Fl_Native_File_Chooser.H>
+ 
+ 

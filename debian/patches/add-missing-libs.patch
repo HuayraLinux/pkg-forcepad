@@ -1,0 +1,16 @@
+From: Ignacio Losiggio <iglosiggio@gmail.com>
+Subject: Add missing libraries to CMakeLists.txt
+
+* src/forcepad/CMakeLists.txt: Added dl and Xext as dependencies
+
+--- a/src/forcepad/CMakeLists.txt
++++ b/src/forcepad/CMakeLists.txt
+@@ -131,7 +131,7 @@
+ jpeg png "-framework Cocoa" "-framework ApplicationServices" "-framework AGL" "-framework OpenGL" z)
+                 endif()
+ 	ELSE(APPLE)
+-		TARGET_LINK_LIBRARIES(forcepad common ivf2d fltk fltk_gl fltk_images fltk_forms jpeg png calfemcxx newmat z GLU GL)
++		TARGET_LINK_LIBRARIES(forcepad dl Xext common ivf2d fltk fltk_gl fltk_images fltk_forms jpeg png calfemcxx newmat z GLU GL)
+ 	ENDIF(APPLE)
+ ENDIF(WIN32)
+ 
