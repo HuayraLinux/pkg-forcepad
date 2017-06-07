@@ -1,0 +1,8 @@
+bin/release/forcepad	usr/lib/forcepad/
+bin/release/brushes/*.rgb usr/share/forcepad/brushes/
+bin/release/colormaps/*.map usr/share/forcepad/colormaps/
+bin/release/samples/*.rgb usr/share/forcepad/samples/
+bin/release/samples/*.fp2 usr/share/forcepad/samples/
+debian/usr	/
+debian/forcepad.desktop usr/share/applications
+

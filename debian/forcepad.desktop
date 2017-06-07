@@ -1,0 +1,10 @@
+[Desktop Entry]
+Name=ForcePAD
+Comment=Herramienta para visualizar estructuras sometidas a cargas físicas
+Exec=/usr/bin/forcepad
+Icon=forcepad
+Categories=Education;Graphics
+Version=1.0
+Type=Application
+Terminal=0
+Keywords=education;graphics;simulation;physics;

@@ -19,7 +19,7 @@ export DEB_BUILD_MAINT_OPTIONS = hardening=-format
 
 # main packaging script based on dh7 syntax
 %:
-	dh $@ 
+	dh $@ --parallel
 
 # debmake generated override targets
 # This is example for Cmake (See http://bugs.debian.org/641051 )
@@ -28,6 +28,8 @@ override_dh_auto_configure:
 	-DCMAKE_BUILD_TYPE=Release
 #	-DCMAKE_LIBRARY_PATH=$(DEB_HOST_MULTIARCH)
 
-
+override_dh_auto_install:
+	chrpath -d bin/release/forcepad
+	@dh_install
 
 

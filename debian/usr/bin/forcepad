@@ -1,0 +1,4 @@
+#!/bin/sh
+cd /usr/share/forcepad
+exec /usr/lib/forcepad/forcepad $@
+
