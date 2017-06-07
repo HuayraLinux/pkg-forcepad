@@ -1,3 +1,4 @@
 fix-headers-capitalization.patch
 add-missing-libs.patch
 throw-unused-projects.patch
+fix-rpath-issue.patch

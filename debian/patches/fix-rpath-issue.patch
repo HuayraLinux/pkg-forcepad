@@ -1,0 +1,17 @@
+From: Ignacio Losiggio <iglosiggio@gmail.com>
+Subject: Remove RPATH from the binarie on `Release` builds
+
+* src/forcepad/CMakeLists.txt: Added `SKIP_BUILD_RPATH TRUE` to the 
+                               properties of the forcepad binary
+
+
+--- a/src/forcepad/CMakeLists.txt
++++ b/src/forcepad/CMakeLists.txt
+@@ -110,6 +110,7 @@
+ ELSE(APPLE)
+ 	if (CMAKE_BUILD_TYPE STREQUAL Release)
+ 		ADD_EXECUTABLE(forcepad ${INCLUDE_FILES} ${SOURCE_FILES})
++		SET_TARGET_PROPERTIES(forcepad PROPERTIES SKIP_BUILD_RPATH TRUE)
+ 	else()
+ 		ADD_EXECUTABLE(forcepadd ${INCLUDE_FILES} ${SOURCE_FILES})
+ 	endif()
