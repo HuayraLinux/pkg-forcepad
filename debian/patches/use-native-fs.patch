@@ -1,0 +1,16 @@
+From: Ignacio Losiggio <iglosiggio@gmail.com>
+Subject: Use native fs for fltk
+
+* src/forcepad/FlPaintView.cpp: define the flag NATIVE_FS
+
+--- a/src/forcepad/FlPaintView.cpp
++++ b/src/forcepad/FlPaintView.cpp
+@@ -13,7 +13,7 @@
+ #include "Cursors.h"
+ #endif
+ 
+-#undef NATIVE_FS
++#define NATIVE_FS
+ 
+ using namespace std;
+ 

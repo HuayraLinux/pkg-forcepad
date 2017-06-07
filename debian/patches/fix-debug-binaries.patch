@@ -1,0 +1,15 @@
+--- a/src/forcepad/CMakeLists.txt
++++ b/src/forcepad/CMakeLists.txt
+@@ -132,7 +132,11 @@
+ jpeg png "-framework Cocoa" "-framework ApplicationServices" "-framework AGL" "-framework OpenGL" z)
+                 endif()
+ 	ELSE(APPLE)
+-		TARGET_LINK_LIBRARIES(forcepad dl Xext common ivf2d fltk fltk_gl fltk_images fltk_forms jpeg png calfemcxx newmat z GLU GL)
++		IF(CMAKE_BUILD_TYPE STREQUAL Release)
++			TARGET_LINK_LIBRARIES(forcepad dl Xext common ivf2d fltk fltk_gl fltk_images fltk_forms jpeg png calfemcxx newmat z GLU GL)
++		ELSE(CMAKE_BUILD_TYPE STREQUAL Release)
++			TARGET_LINK_LIBRARIES(forcepadd dl Xext commond ivf2dd fltk fltk_gl fltk_images fltk_forms jpeg png calfemcxxd newmatd z GLU GL)
++		ENDIF(CMAKE_BUILD_TYPE STREQUAL Release)
+ 	ENDIF(APPLE)
+ ENDIF(WIN32)
+ 
