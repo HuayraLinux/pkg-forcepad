@@ -1,0 +1,146 @@
+From: Ignacio Losiggio <iglosiggio@gmail.com>
+Subject: Fixed various segfaults caused by bad casts
+
+* src/forcepad/MainFrame2.cpp
+* src/forcepad/MainFrame2_kiosk.cpp
+* src/forcepad/TabletToolbar.cpp
+* src/forcepad/TabletToolbar_kiosk.cpp
+
+Fixed using the following sed command:
+  sed -i "s/->setView(/->setView((CPaintView*) /" \
+    src/forcepad/MainFrame2.cpp \
+    src/forcepad/MainFrame2_kiosk.cpp \
+    src/forcepad/TabletToolbar.cpp \
+    src/forcepad/TabletToolbar_kiosk.cpp 
+
+Index: pkg-forcepad/src/forcepad/MainFrame2.cpp
+===================================================================
+--- pkg-forcepad.orig/src/forcepad/MainFrame2.cpp
++++ pkg-forcepad/src/forcepad/MainFrame2.cpp
+@@ -129,7 +129,7 @@ void CMainFrame::cb_modeMenuAction(Fl_Me
+ 
+ void CMainFrame::cb_settingsMenuCalculation_i(Fl_Menu_*, void*) {
+   CCalcSettings* calcSettings = new CCalcSettings();
+-calcSettings->setView(paintView);
++calcSettings->setView((CPaintView*) paintView);
+ calcSettings->centerWindow(wndMain);
+ calcSettings->show();
+ delete calcSettings;
+@@ -141,7 +141,7 @@ void CMainFrame::cb_settingsMenuCalculat
+ 
+ void CMainFrame::cb_settingsMenuGeneral_i(Fl_Menu_*, void*) {
+   CGeneralSettings* generalSettings = new CGeneralSettings();
+-generalSettings->setView(paintView);
++generalSettings->setView((CPaintView*) paintView);
+ generalSettings->centerWindow(wndMain);
+ generalSettings->show();
+ delete generalSettings;
+@@ -1821,7 +1821,7 @@ static Fl_RGB_Image image_action_rotate_
+ void CMainFrame::cb_btnOptimize_i(Fl_HoverButton*, void*) {
+   m_continueCalc = true;
+ 
+-m_optSettings->setView(paintView);
++m_optSettings->setView((CPaintView*) paintView);
+ m_optSettings->centerWindow(wndMain);
+ m_optSettings->show();
+ //delete optSettings;
+@@ -2092,7 +2092,7 @@ static unsigned char idata_structure_bla
+ static Fl_RGB_Image image_structure_black_grd(idata_structure_black_grd, 36, 36, 3, 0);
+ 
+ void CMainFrame::cb_btnVizMixer_i(Fl_HoverButton*, void*) {
+-  m_vizMixer->setView(paintView);
++  m_vizMixer->setView((CPaintView*) paintView);
+ m_vizMixer->show();
+ m_vizMixer->placeWindow(wndMain);
+ }
+@@ -11060,13 +11060,13 @@ CMainFrame::CMainFrame() {
+   paintView->setNewModelEvent(this);
+   
+   m_tabletToolbar = new CTabletToolbar();
+-  m_tabletToolbar->setView(paintView);
++  m_tabletToolbar->setView((CPaintView*) paintView);
+   
+   m_vizMixer = new CVizMixerToolbar();
+-  m_vizMixer->setView(paintView);
++  m_vizMixer->setView((CPaintView*) paintView);
+   
+   m_optSettings = new COptSettings();
+-  m_optSettings->setView(paintView);
++  m_optSettings->setView((CPaintView*) paintView);
+   
+   m_sketchEditMode = CPaintView::EM_BRUSH;
+   m_physicsEditMode = CPaintView::EM_FORCE;
+Index: pkg-forcepad/src/forcepad/MainFrame2_kiosk.cpp
+===================================================================
+--- pkg-forcepad.orig/src/forcepad/MainFrame2_kiosk.cpp
++++ pkg-forcepad/src/forcepad/MainFrame2_kiosk.cpp
+@@ -1458,7 +1458,7 @@ static Fl_RGB_Image image_action_rotate_
+ void CMainFrame::cb_btnOptimize_i(Fl_HoverButton*, void*) {
+   m_continueCalc = true;
+ 
+-m_optSettings->setView(paintView);
++m_optSettings->setView((CPaintView*) paintView);
+ m_optSettings->centerWindow(wndMain);
+ m_optSettings->show();
+ //delete optSettings;
+@@ -1801,7 +1801,7 @@ static unsigned char idata_rectangle_bla
+ static Fl_RGB_Image image_rectangle_black(idata_rectangle_black, 36, 36, 4, 0);
+ 
+ void CMainFrame::cb_btnVizMixer_i(Fl_HoverButton*, void*) {
+-  m_vizMixer->setView(paintView);
++  m_vizMixer->setView((CPaintView*) paintView);
+ m_vizMixer->show();
+ m_vizMixer->placeWindow(wndMain);
+ }
+@@ -10837,13 +10837,13 @@ CMainFrame::CMainFrame() {
+   paintView->setNewModelEvent(this);
+   
+   m_tabletToolbar = new CTabletToolbar();
+-  m_tabletToolbar->setView(paintView);
++  m_tabletToolbar->setView((CPaintView*) paintView);
+   
+   m_vizMixer = new CVizMixerToolbar();
+-  m_vizMixer->setView(paintView);
++  m_vizMixer->setView((CPaintView*) paintView);
+   
+   m_optSettings = new COptSettings();
+-  m_optSettings->setView(paintView);
++  m_optSettings->setView((CPaintView*) paintView);
+   
+   m_sketchEditMode = CPaintView::EM_BRUSH;
+   m_physicsEditMode = CPaintView::EM_FORCE;
+@@ -10911,7 +10911,7 @@ void CMainFrame::show() {
+   #ifdef FORCEPAD_KIOSK
+   m_tabletToolbar->show();
+   m_tabletToolbar->placeWindow(wndMain);
+-  m_tabletToolbar->setView(paintView);
++  m_tabletToolbar->setView((CPaintView*) paintView);
+   btnTabletToolbar->show();
+   #endif
+   
+Index: pkg-forcepad/src/forcepad/TabletToolbar.cpp
+===================================================================
+--- pkg-forcepad.orig/src/forcepad/TabletToolbar.cpp
++++ pkg-forcepad/src/forcepad/TabletToolbar.cpp
+@@ -1251,7 +1251,7 @@ void CTabletToolbar::cb_btnSettings_i(Fl
+ 	CPaintView* view = (CPaintView*)m_paintView;
+ 	
+ 	CCalcSettings* calcSettings = new CCalcSettings();
+-	calcSettings->setView(view);
++	calcSettings->setView((CPaintView*) view);
+ 	calcSettings->centerWindow(mainWindow);
+ 	calcSettings->show();
+ 	delete calcSettings;
+Index: pkg-forcepad/src/forcepad/TabletToolbar_kiosk.cpp
+===================================================================
+--- pkg-forcepad.orig/src/forcepad/TabletToolbar_kiosk.cpp
++++ pkg-forcepad/src/forcepad/TabletToolbar_kiosk.cpp
+@@ -636,7 +636,7 @@ void CTabletToolbar::cb_btnSettings_i(Fl
+ 	CFlPaintView* view = (CFlPaintView*)m_paintView;
+ 	
+ 	CCalcSettings* calcSettings = new CCalcSettings();
+-	calcSettings->setView(view);
++	calcSettings->setView((CPaintView*) view);
+ 	calcSettings->centerWindow(mainWindow);
+ 	calcSettings->show();
+ 	delete calcSettings;
