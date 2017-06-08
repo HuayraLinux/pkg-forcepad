@@ -1,7 +1,7 @@
 From: Ignacio Losiggio <iglosiggio@gmail.com>
-Subject: Add missing libraries to CMakeLists.txt
+Subject: Add missing libraries to and removing unused ones CMakeLists.txt
 
-* src/forcepad/CMakeLists.txt: Added dl and Xext as dependencies
+* src/forcepad/CMakeLists.txt: Added dl and Xext as dependencies (removed libz)
 
 --- a/src/forcepad/CMakeLists.txt
 +++ b/src/forcepad/CMakeLists.txt
@@ -10,7 +10,7 @@ Subject: Add missing libraries to CMakeLists.txt
                  endif()
  	ELSE(APPLE)
 -		TARGET_LINK_LIBRARIES(forcepad common ivf2d fltk fltk_gl fltk_images fltk_forms jpeg png calfemcxx newmat z GLU GL)
-+		TARGET_LINK_LIBRARIES(forcepad dl Xext common ivf2d fltk fltk_gl fltk_images fltk_forms jpeg png calfemcxx newmat z GLU GL)
++		TARGET_LINK_LIBRARIES(forcepad dl Xext common ivf2d fltk fltk_gl fltk_images fltk_forms jpeg png calfemcxx newmat GLU GL)
  	ENDIF(APPLE)
  ENDIF(WIN32)
  
